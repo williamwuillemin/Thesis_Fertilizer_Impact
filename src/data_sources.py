@@ -208,16 +208,31 @@ def parse_fred(payload: dict, series_id: str) -> pd.DataFrame:
 
 
 def extract_fred() -> SourceResult:
-    if not config.FRED_API_KEY:
-        raise RuntimeError("FRED_API_KEY missing in .env (free key: fred.stlouisfed.org/docs/api/api_key.html)")
+    """
+    With FRED_API_KEY in .env: download from the API (and archive the files, as usual).
+    Without a key: rebuild from the LATEST archived files in data/raw/fred/ (offline),
+    so the database can be rebuilt without the API. The vintage used is printed.
+    """
+    offline = not config.FRED_API_KEY
+    if offline:
+        print("   FRED_API_KEY missing in .env -> using the archived files in data/raw/fred/")
     s, frames, meta = session(), [], []
     for fred_id, (sid, desc, unit) in config.FRED_SERIES.items():
-        r = s.get(FRED_URL, timeout=60, params={
-            "series_id": fred_id, "api_key": config.FRED_API_KEY, "file_type": "json",
-            "observation_start": config.START_DATE, "frequency": "m"})
-        r.raise_for_status()
-        archive(r.content, "fred", f"{fred_id}.json")
-        frames.append(parse_fred(r.json(), sid))
+        if offline:
+            files = sorted((config.RAW_DIR / "fred").glob(f"*_{fred_id}.json"))   # names start with the date
+            if not files:
+                raise RuntimeError(f"No API key and no archived file for {fred_id} in data/raw/fred/ "
+                                   "(free key: fred.stlouisfed.org/docs/api/api_key.html)")
+            print(f"   {fred_id}: {files[-1].name}")
+            payload = json.loads(files[-1].read_text())
+        else:
+            r = s.get(FRED_URL, timeout=60, params={
+                "series_id": fred_id, "api_key": config.FRED_API_KEY, "file_type": "json",
+                "observation_start": config.START_DATE, "frequency": "m"})
+            r.raise_for_status()
+            archive(r.content, "fred", f"{fred_id}.json")
+            payload = r.json()
+        frames.append(parse_fred(payload, sid))
         meta.append(SeriesMeta(sid, desc, "FRED", unit, "M", fred_id))
     return SourceResult(observations=filter_start(pd.concat(frames, ignore_index=True)), meta=meta)
 

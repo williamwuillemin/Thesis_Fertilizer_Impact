@@ -1,0 +1,34 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   food   R-squared:                       0.204
+Model:                            OLS   Adj. R-squared:                  0.178
+Method:                 Least Squares   F-statistic:                     3.769
+Date:                Mon, 23 Nov 2026   Prob (F-statistic):           8.48e-05
+Time:                        21:44:19   Log-Likelihood:                -698.86
+No. Observations:                 314   AIC:                             1420.
+Df Residuals:                     303   BIC:                             1461.
+Df Model:                          10                                         
+Covariance Type:                  HAC                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      0.2310      0.188      1.231      0.218      -0.137       0.599
+urea_lag0      0.0113      0.014      0.812      0.417      -0.016       0.039
+urea_lag1     -0.0015      0.008     -0.189      0.850      -0.017       0.014
+urea_lag2      0.0083      0.011      0.750      0.453      -0.013       0.030
+urea_lag3      0.0060      0.010      0.598      0.550      -0.014       0.026
+urea_lag4      0.0018      0.012      0.143      0.886      -0.023       0.026
+urea_lag5      0.0060      0.018      0.329      0.742      -0.030       0.042
+urea_lag6     -0.0163      0.013     -1.281      0.200      -0.041       0.009
+gas            0.0142      0.015      0.915      0.360      -0.016       0.045
+brent          0.1041      0.025      4.124      0.000       0.055       0.154
+hormuz        -0.0046      0.534     -0.009      0.993      -1.051       1.042
+==============================================================================
+Omnibus:                       28.614   Durbin-Watson:                   1.159
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              106.613
+Skew:                          -0.236   Prob(JB):                     7.07e-24
+Kurtosis:                       5.815   Cond. No.                         104.
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity and autocorrelation robust (HAC) using 6 lags and without small sample correction

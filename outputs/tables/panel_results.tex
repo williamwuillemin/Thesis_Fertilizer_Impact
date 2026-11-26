@@ -1,0 +1,61 @@
+\begin{table}[htbp]
+\centering
+\begin{threeparttable}
+\caption{Response of nitrogen-intensive crop prices relative to soybeans after a nitrogen fertilizer price shock}
+\label{tab:panel_lp}
+\begin{tabular}{l c c c}
+\toprule
+ & (1) & (2) & \\
+Horizon $h$ & Baseline & + Crop $\times$ & Obs. \\
+(months) & & (Brent, USD) & \\
+\midrule
+0 & $0.139^{*}$ & $0.162^{*}$ & 1,276 \\
+ & (0.084) & (0.083) & \\
+\addlinespace[2pt]
+1 & $0.205^{*}$ & $0.229^{**}$ & 1,272 \\
+ & (0.113) & (0.112) & \\
+\addlinespace[2pt]
+2 & $0.191$ & $0.222$ & 1,268 \\
+ & (0.137) & (0.138) & \\
+\addlinespace[2pt]
+3 & $0.272$ & $0.312^{*}$ & 1,264 \\
+ & (0.174) & (0.176) & \\
+\addlinespace[2pt]
+4 & $0.225$ & $0.258$ & 1,260 \\
+ & (0.194) & (0.190) & \\
+\addlinespace[2pt]
+5 & $0.443^{**}$ & $0.473^{***}$ & 1,256 \\
+ & (0.183) & (0.182) & \\
+\addlinespace[2pt]
+6 & $0.460^{***}$ & $0.477^{***}$ & 1,252 \\
+ & (0.170) & (0.168) & \\
+\addlinespace[2pt]
+7 & $0.398^{*}$ & $0.414^{**}$ & 1,248 \\
+ & (0.205) & (0.201) & \\
+\addlinespace[2pt]
+8 & $0.283$ & $0.294$ & 1,244 \\
+ & (0.221) & (0.215) & \\
+\addlinespace[2pt]
+9 & $0.303$ & $0.305$ & 1,240 \\
+ & (0.249) & (0.238) & \\
+\addlinespace[2pt]
+10 & $0.363$ & $0.355$ & 1,236 \\
+ & (0.254) & (0.237) & \\
+\addlinespace[2pt]
+11 & $0.300$ & $0.292$ & 1,232 \\
+ & (0.253) & (0.236) & \\
+\addlinespace[2pt]
+12 & $0.370$ & $0.360$ & 1,228 \\
+ & (0.260) & (0.248) & \\
+\midrule
+Crop fixed effects & Yes & Yes & \\
+Month fixed effects & Yes & Yes & \\
+Crop $\times$ (Brent, USD) & No & Yes & \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \textit{Notes:} Panel local projections (Jord\`a, 2005). Each cell reports $\theta_h$, the extra cumulative percentage change in the price of maize, wheat and rice relative to soybeans between $t-1$ and $t+h$, following a 1\% increase in the US producer price index for nitrogen fertilizer. All regressions control for the lagged interacted shock and the lagged own price change. Driscoll--Kraay standard errors (Bartlett kernel, bandwidth $h+1$) in parentheses. Sample: 2000-03 to 2026-09 at $h=0$; the last $h$ months are lost at horizon $h$. $^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.10$.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
