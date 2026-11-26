@@ -40,6 +40,17 @@ START_DATE = "2000-01-01"
 # This is a modelling choice you should justify in the thesis (Feb vs Mar).
 HORMUZ_START = "2026-03-01"
 
+# War in Ukraine: Russian invasion on 24 Feb 2022 → first FULL month of war = March 2022.
+# Used as a step dummy (1 from March 2022 onward), same logic as HORMUZ_START.
+UKRAINE_START = "2022-03-01"
+
+# COVID-19: WHO declares a pandemic on 11 Mar 2020 → first month = March 2020.
+# Window dummy (1 only inside the period): ends December 2021, before the Ukraine war,
+# so the two shocks are not mixed. Justify the end date in the thesis (alternatives:
+# Feb 2022, or May 2023 = end of the WHO emergency).
+COVID_START = "2020-03-01"
+COVID_END = "2021-12-01"
+
 # ---------------------------------------------------------------------------
 # FAO Food Price Index (dependent variables)
 # The page https://www.fao.org/worldfoodsituation/foodpricesindex/en/ links the files.
@@ -93,6 +104,17 @@ WB_SERIES = {
     "soybean oil": ("wb_soyoil", "$/mt"),
     "palm oil": ("wb_palmoil", "$/mt"),
     "sugar, world": ("wb_sugar", "$/kg"),
+}
+
+# Nitrogen fertilizer application rate by crop (kg N per hectare), used by crop_panel.py
+# to build the nitrogen intensity N_c (0 = soybeans, 1 = maize).
+#   series_id: (crop name, kg N/ha)
+# TODO: add the exact source (publication, year, table) of these rates for the thesis.
+CROP_N_RATE = {
+    "wb_maize": ("Maize", 118.8),
+    "wb_rice": ("Rice", 113.8),
+    "wb_wheat_hrw": ("Wheat", 97.8),
+    "wb_soybeans": ("Soybeans", 16.0),   # legume: fixes its own nitrogen -> placebo crop
 }
 
 # ---------------------------------------------------------------------------
